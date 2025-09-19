@@ -238,6 +238,8 @@ public class ArrayExample1 {
 		} else {
 			System.out.println("존재하지 않음");
 		}
+		
+		System.out.println("Hello WOrld");
 	}
 
 }
