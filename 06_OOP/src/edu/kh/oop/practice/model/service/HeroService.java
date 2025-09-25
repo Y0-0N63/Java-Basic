@@ -25,7 +25,7 @@ public class HeroService {
 		
 		// 3. 각 객체가 가진 method를 적절히 호출하여 출력결과와 같이 출력
 		System.out.println("==============" + hero1.getNickname() + " 시점==============");
-		hero1.attack(100.0);
+		hero1.attack(100.0);	
 		hero1.attack(50.5);
 		hero1.attack(49.5);
 		hero1.dash();	
