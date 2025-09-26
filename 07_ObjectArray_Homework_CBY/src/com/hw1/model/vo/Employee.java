@@ -38,7 +38,8 @@ public class Employee {
 	}
 	
 	public String information() {
-		return empNo + empName + dept + job + age + gender + salary + bonusPoint + phone + address;
+		return String.format("emp[%d] : %d, %s, %s, %s, %d, %c, %d, %.1f, %s, %s",
+				empNo, empNo, empName, dept, job, age, gender, salary, bonusPoint, phone, address) ;
 	}
 
 	public int getEmpNo() {
