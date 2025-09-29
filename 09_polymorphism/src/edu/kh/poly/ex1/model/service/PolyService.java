@@ -13,7 +13,7 @@ public class PolyService {
 		Car car = new Car();
 		
 		// Tesla 객체 생성
-		// 자식타입 참조볌수 = 자식객체주소
+		// 자식타입 참조변수 = 자식객체주소
 		Tesla tesla = new Tesla();
 		
 		// ************** 다형성 **************
@@ -60,7 +60,7 @@ public class PolyService {
 		arr[0] = car;
 		
 		// Car 타입 참조변수 = 자식(Tesla) 객체주소
-		arr[1] = car2;
+		arr[1] = car2;	
 		arr[2] = car3;
 		
 		for(int i = 0; i < arr.length; i++) {
@@ -165,5 +165,6 @@ public class PolyService {
 		System.out.println(c2.toString());
 		// String edu.kh.poly.ex1.model.dto.Car.toString ()
 		// 실행 시) 경차엔진 / 휘발유 / 4 / 0.5 >> Spark 클래스에 오버라이딩된 toString()
+		// >> 동적바인딩
 	}
 }
