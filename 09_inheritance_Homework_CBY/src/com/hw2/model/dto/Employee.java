@@ -8,8 +8,16 @@ public class Employee extends Person {
 		this.position = position;
 	}
 	
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
 	@Override
 	public String getInfo() {
-		return null;
+		return "ID : " + id + " , 이름 : " + name + " , 직책 : " + position;
 	}
 }

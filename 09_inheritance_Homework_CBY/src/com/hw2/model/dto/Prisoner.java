@@ -10,6 +10,6 @@ public class Prisoner extends Person {
 
 	@Override
 	public String getInfo() {
-		return null;
+		return "ID : " + id + " , 이름 : " + name + " , 죄목 : " + position;
 	}
 }
