@@ -1,15 +1,23 @@
 package com.hw2.run;
 
+import com.hw2.model.service.Company;
+import com.hw2.model.service.ManagementSystem;
+import com.hw2.model.service.Prison;
+
 public class Run {
 
 	public static void main(String[] args) {
 		// Company의 생성자를 이용해 10칸짜리 Employee 객체배열을 생성하는 Company 객체 생성
+		
 		// >> ManagementSystem 자료형의 company에 주소 저장
 		
-		// Prison 생성자를 이용해 10칸짜리 Prisonmer 객체배열을 생성하는 Prison 객체 생성
+		// Prison 생성자를 이용해 10칸짜리 Prisoner 객체배열을 생성하는 Prison 객체 생성
+		Prison[] pri = new Prison[10];
+		
 		// >> ManagementSystem 자료형의 prison에 주소 저장
 		
 		// 2명의 직원 새로 등록
+		
 		// 등록된 전체 직원 조회
 	
 		// 2명의 수감자 새로 등록

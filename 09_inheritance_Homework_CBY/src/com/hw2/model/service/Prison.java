@@ -1,9 +1,12 @@
 package com.hw2.model.service;
 
+import java.util.Scanner;
+
 import com.hw2.model.dto.Person;
 import com.hw2.model.dto.Prisoner;
 
 public class Prison implements ManagementSystem {
+	Scanner sc = new Scanner(System.in);
 	private Prisoner[] prisoners;
 	int prisonerCount;
 	
@@ -11,20 +14,34 @@ public class Prison implements ManagementSystem {
 
 	@Override
 	public void addPerson(Person person) {
-		// TODO Auto-generated method stub
-		
+		// 매개변수로 들어온 person이 Prisoner인지 && prisoners 객체 배열에 공간이 있는지 체크
+		if(person instanceof Prisoner && prisonerCount < prisoners.length) {
+			prisoners[prisonerCount++] = (Prisoner) person;
+			System.out.println("수감자가 추가되었습니다 - " + person.getInfo());
+		} else {
+			System.out.println("인원이 모두 충족되었습니다.");
+		}
 	}
 
 	@Override
 	public void removePerson(String id) {
-		// TODO Auto-generated method stub
-		
+		for(int i = 0; i < prisonerCount; i++) {
+			if(prisoners[i].getId().equals(id)) {
+				System.out.println("수감자가 삭제되었습니다 - " + prisoners[i].getInfo());
+				prisoners[i] = null;
+			} for (int j = i; j < prisonerCount--; j++) {
+				prisoners[j] = prisoners[j + 1];
+			} prisoners[--prisonerCount] = null;
+		}
+		System.out.println("해당 id를 가진 수감자를 찾을 수 없습니다.");
 	}
 
 	@Override
 	public void displayAllPersons() {
-		// TODO Auto-generated method stub
-		
+		System.out.print("전체 수감자 명단 : ");
+		for(int i = 0; i < prisonerCount; i++) {
+			System.out.println(prisoners[i].getInfo());
+		}
 	}
 
 }
