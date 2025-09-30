@@ -36,11 +36,13 @@ public class Company implements ManagementSystem {
 				employees[i] = null;
 
 				// 직원 삭제 후, 삭제된 위치서부터 나머지 배열의 요소들을 한 칸씩 앞당겨야 함
-				for (int j = i; j < employeeCount--; j++) {
+				for (int j = i; j < employeeCount - 1; j++) {
 					employees[j] = employees[j + 1];
 				}
 				// employeeCount 변수를 감소 > 배열의 마지막 요소를 null로 설정 > 직원수 줄이기
 				employees[--employeeCount] = null;
+				
+				return;
 			}
 		}
 		System.out.println("해당 id를 가진 직원을 찾을 수 없습니다.");
@@ -48,7 +50,7 @@ public class Company implements ManagementSystem {
 
 	@Override
 	public void displayAllPersons() {
-		System.out.print("전체 직원 명단 : ");
+		System.out.print("전체 직원 명단 : \n");
 		for(int i = 0; i < employeeCount; i++) {
 			System.out.println(employees[i].getInfo());
 		}

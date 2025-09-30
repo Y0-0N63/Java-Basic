@@ -10,7 +10,10 @@ public class Prison implements ManagementSystem {
 	private Prisoner[] prisoners;
 	int prisonerCount;
 	
-	public Prison(int size) {}
+	public Prison(int size) {
+		prisoners = new Prisoner[size];
+		prisonerCount = 0;
+	}
 
 	@Override
 	public void addPerson(Person person) {
@@ -29,16 +32,22 @@ public class Prison implements ManagementSystem {
 			if(prisoners[i].getId().equals(id)) {
 				System.out.println("수감자가 삭제되었습니다 - " + prisoners[i].getInfo());
 				prisoners[i] = null;
-			} for (int j = i; j < prisonerCount--; j++) {
+				
+			} for (int j = i; j < prisonerCount - 1; j++) {
 				prisoners[j] = prisoners[j + 1];
-			} prisoners[--prisonerCount] = null;
+			} 
+			
+			prisoners[--prisonerCount] = null;
+			// return : 해당 메소드 즉시 종료
+			return;
 		}
+		
 		System.out.println("해당 id를 가진 수감자를 찾을 수 없습니다.");
 	}
 
 	@Override
 	public void displayAllPersons() {
-		System.out.print("전체 수감자 명단 : ");
+		System.out.print("전체 수감자 명단 : \n");
 		for(int i = 0; i < prisonerCount; i++) {
 			System.out.println(prisoners[i].getInfo());
 		}
