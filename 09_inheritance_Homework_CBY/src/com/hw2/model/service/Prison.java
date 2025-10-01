@@ -39,6 +39,7 @@ public class Prison implements ManagementSystem {
 			
 			prisoners[--prisonerCount] = null;
 			// return : 해당 메소드 즉시 종료
+			// return문으로 메소드를 빠져나가는 방법은 리턴 자료형이 void형인 메소드에서만 사용 가능
 			return;
 		}
 		

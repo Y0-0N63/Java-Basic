@@ -1,6 +1,7 @@
 package edu.kh.collection.pack1.model.dto;
 
-public class Student {
+// 인터페이스를 상속받았으므로 > 추상 메서드 오버라이딩 필수!
+public class Student implements Comparable<Student> {
 	
 	// 속성
 	private String name;
@@ -55,5 +56,16 @@ public class Student {
 	public String toString() {
 		return "Student [name=" + name + ", age=" + age + ", region=" + region + ", gender=" + gender + ", score="
 				+ score + "]";
+	}
+
+	@Override
+	public int compareTo(Student o) {
+		// compareTo() : 두 객체 비교하고 순서 결정 > 반환값 : 0(같음), 양수(왼쪽 객체가 더 큼), 음수(왼쪽 객체가 더 작음)
+		// o == other
+		// 나이를 기준으로 오름차순 정렬
+//		return this.age - o.age;
+		
+		// 나이를 기준으로 내림차순 정렬
+		return o.age - this.age;
 	}
 }
