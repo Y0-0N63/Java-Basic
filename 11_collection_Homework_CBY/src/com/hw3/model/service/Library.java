@@ -62,7 +62,7 @@ public class Library {
 					lookFavorite();
 					break;
 				case 8:
-					/* selectRecommend() */;
+					selectRecommend();
 					break;
 				case 0:
 					System.out.println("프로그램을 종료합니다...");
@@ -76,6 +76,7 @@ public class Library {
 			}
 		} while (menuNum != 0);
 	}
+	
 
 	public String createBook() {
 		System.out.println("\n===== 도서 등록 =====");
@@ -256,6 +257,7 @@ public class Library {
 		return "해당 번호의 도서가 존재하지 않습니다.";
 	}
 
+	
 	public void lookFavorite() {
 		System.out.println("===== 즐겨찾기 조회 =====");
 
@@ -268,4 +270,14 @@ public class Library {
 			System.out.println(favorite.toString());
 		}
 	}
+
+	public void selectRecommend() {
+		System.out.println("\n===== 추천 도서 뽑기 =====");
+		if (books.isEmpty()) {
+			System.out.println("등록된 도서가 없습니다. 도서를 등록해주세요!");
+		}
+		
+		int random = (int) (Math.random() * books.size() + 1);
+		System.out.println(books.get(random).getTitle());
+	} 
 }
