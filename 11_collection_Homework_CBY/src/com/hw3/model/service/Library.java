@@ -56,10 +56,10 @@ public class Library {
 					createFavorite();
 					break;
 				case 6:
-					/* removeFavorite() */;
+					System.out.println(removeFavorite());
 					break;
 				case 7:
-					/* lookFavorite() */;
+					lookFavorite();
 					break;
 				case 8:
 					/* selectRecommend() */;
@@ -114,7 +114,6 @@ public class Library {
 			System.out.println(book.toString());
 		}
 	}
-	
 
 	public void updateBook() {
 		System.out.println("\n=====도서 수정=====");
@@ -199,28 +198,74 @@ public class Library {
 		int num = sc.nextInt();
 
 		for (Book book : books) {
-			int index = books.indexOf(book);
-			
-			System.out.print("정말 삭제하시겠습니까? (Y/N) : ");
-			char input = sc.next().toUpperCase().charAt(0);
-
-			if (input == 'Y') {
-				books.remove(index);
-				return "삭제가 완료되었습니다";
-			} else {
-				return "삭제를 진행하지 않습니다";
+			if (book.getNum() == num) {
+				System.out.print("정말 삭제하시겠습니까? (Y/N) : ");
+				char input = sc.next().toUpperCase().charAt(0);
+				if (input == 'Y') {
+					books.remove(book);
+					return "삭제가 완료되었습니다";
+				} else {
+					return "삭제를 취소합니다";
+				}
 			}
 		}
 		return "일치하는 도서 번호가 없습니다.";
+
 	}
-	
+
 	public void createFavorite() {
 		System.out.println("===== 즐겨찾기 추가 =====");
 		System.out.print("즐겨찾기 할 도서 번호 : ");
-		int num = sc.nextInt();
-		
-		for(Book book : books) {
-			if()
+		int bookNum = sc.nextInt();
+		boolean flag = true;
+		sc.nextLine();
+
+		if (books.isEmpty()) {
+			System.out.println("등록된 도서 정보가 없습니다.");
+		}
+
+		for (Book book : books) {
+			if (bookNum == book.getNum()) {
+				favorites.add(book);
+				System.out.println(bookNum + "번 도서가 즐겨찾기에 추가되었습니다.");
+				flag = false;
+				break;
+			}
+		}
+
+		if (flag)
+			System.out.println("해당 번호의 도서가 존재하지 않습니다.");
+	}
+
+	public String removeFavorite() {
+		System.out.println("\n=====즐겨찾기 삭제=====");
+
+		if (favorites.isEmpty()) {
+			return "즐겨찾기에 추가된 도서 정보가 없습니다.";
+		}
+
+		System.out.print("삭제할 도서 번호 : ");
+		int bookNum = sc.nextInt();
+
+		for (Book book : favorites) {
+			if (book.getNum() == bookNum) {
+				favorites.remove(book);
+				return bookNum + "번 도서가 삭제되었습니다.";
+			}
+		}
+		return "해당 번호의 도서가 존재하지 않습니다.";
+	}
+
+	public void lookFavorite() {
+		System.out.println("===== 즐겨찾기 조회 =====");
+
+		if (favorites.isEmpty()) {
+			System.out.println("등록된 도서가 없습니다. 도서를 등록해주세요!");
+			return;
+		}
+
+		for (Book favorite : favorites) {
+			System.out.println(favorite.toString());
 		}
 	}
 }
