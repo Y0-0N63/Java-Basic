@@ -120,7 +120,7 @@ public class Library {
 		System.out.println("\n=====도서 수정=====");
 
 		if (books.isEmpty()) {
-			System.out.println("일치하는 도서 번호가 없습니다.");
+			System.out.println("등록된 도서 정보가 없습니다.");
 			return;
 		}
 
@@ -183,7 +183,7 @@ public class Library {
 		}
 
 		if (flag) {
-			System.out.println("해당 도서가 존재하지 않습니다.");
+			System.out.println("일치하는 도서 번호가 없습니다.");
 			return;
 		}
 	}
@@ -204,9 +204,9 @@ public class Library {
 				char input = sc.next().toUpperCase().charAt(0);
 				if (input == 'Y') {
 					books.remove(book);
-					return "삭제가 완료되었습니다";
+					return "삭제가 완료되었습니다.";
 				} else {
-					return "삭제를 취소합니다";
+					return "삭제를 취소합니다.";
 				}
 			}
 		}
