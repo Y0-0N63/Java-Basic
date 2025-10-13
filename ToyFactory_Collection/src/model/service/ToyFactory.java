@@ -101,7 +101,7 @@ public class ToyFactory {
 				System.out.println(addIngredient());
 				break;
 			case 7:
-				removeIngredient(); break;
+				System.out.println(removeIngredient()); break;
 			case 0:
 				System.out.println("프로그램 종료...");
 				break;
@@ -225,7 +225,8 @@ public class ToyFactory {
 			}
 		}
 
-		// for문 + keySet()으로 toyMap 출력하기
+		// 연령별로 출력하기
+		for
 		Set<Integer> keySet = toyMap.keySet();
 		for (Integer key : keySet) {
 			System.out.println(toyMap.get(key));
@@ -234,7 +235,9 @@ public class ToyFactory {
 
 	public String addIngredient() {
 		System.out.println("<재료 추가>");
+		
 		// 현재 재료 보여주기
+		System.out.println("---현재 등록된 재료---");
 		Set<Integer> keySet = ingredientMap.keySet();
 
 		int i = 1;
@@ -242,6 +245,7 @@ public class ToyFactory {
 			System.out.println(i++ + ". " + ingredientMap.get(key));
 		}
 
+		// 재료 추가하기
 		System.out.print("재료 고유 번호(key) 입력 : ");
 		int input = sc.nextInt();
 
@@ -267,5 +271,28 @@ public class ToyFactory {
 		return "새로운 재료가 성공적으로 등록되었습니다.";
 	}
 	
-	public void removeIngredient() {}
+	public String removeIngredient() {
+		System.out.println("<재료 삭제>");
+		
+		// 현재 재료 보여주기
+		Set<Integer> keySet = ingredientMap.keySet();
+		
+		int i = 1;
+		for(Integer key : keySet) {
+			System.out.println(i++ + ". " + ingredientMap.get(key));
+		}
+		
+		// 재료 삭제하기
+		System.out.print("삭제할 재료명 입력 : ");
+		String ingredient = sc.next();
+		
+		for(Integer key : keySet) {
+			// 해당 재료명을 value로 가진 key가 있는지 확인
+			if(ingredientMap.get(key).equals(ingredient)) {
+				ingredientMap.remove(key);
+				return "재료 '" + ingredient + "'가 성공적으로 제거되었습니다.";
+			}
+		}
+		return "해당 이름의 재료가 존재하지 않습니다.";
+	}
 }
