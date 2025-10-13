@@ -13,9 +13,6 @@ import java.util.Set;
 
 import model.dto.Toy;
 
-/**
- * 
- */
 public class ToyFactory {
 	private Scanner sc = new Scanner(System.in);
 	private Set<Toy> toySet = new HashSet<Toy>();
@@ -188,6 +185,9 @@ public class ToyFactory {
 		// toySet을 list로 변환 > comparator 사용해서 Toy의 제조일을 기준으로 정렬하기
 		List<Toy> list = new ArrayList<>(toySet);
 
+		// Collections.sort() : 첫 번째 인자로 받은 List 컬렉션의 요소 정렬
+		// new Comparator<Toy>(){...} : 요소 두 개를 어떻게 비교할지 알려주는 기준 제공
+		// 오름차순 > 음수, 내림차순 > 정수
 		Collections.sort(list, new Comparator<Toy>() {
 			@Override
 			public int compare(Toy o1, Toy o2) {
