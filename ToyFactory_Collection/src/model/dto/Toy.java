@@ -1,6 +1,7 @@
 package model.dto;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class Toy {
 	private String toyName;
@@ -8,11 +9,12 @@ public class Toy {
 	private int price;
 	private String color;
 	private int date;
-	private String ingredient;
+	private Set<String> ingredient;
+	
 	
 	public Toy() {}
 
-	public Toy(String toyName, int age, int price, String color, int date, String ingredient) {
+	public Toy(String toyName, int age, int price, String color, int date, Set<String> ingredient) {
 		super();
 		this.toyName = toyName;
 		this.age = age;
@@ -62,18 +64,12 @@ public class Toy {
 		this.date = date;
 	}
 
-	public String getIngredient() {
+	public Set<String> getIngredient() {
 		return ingredient;
 	}
 
-	public void setIngredient(String ingredient) {
+	public void setIngredient(Set<String> ingredient) {
 		this.ingredient = ingredient;
-	}
-
-	@Override
-	public String toString() {
-		return "이름 : " + toyName + " / 가격 : " + price + " / 색상 : " + color + " / 사용가능연령 : " + age
-				+ " / 제조년원일 : " + date + " / 재료 : " + ingredient;
 	}
 
 	@Override
@@ -93,5 +89,15 @@ public class Toy {
 		return age == other.age && Objects.equals(color, other.color) && date == other.date
 				&& Objects.equals(ingredient, other.ingredient) && price == other.price
 				&& Objects.equals(toyName, other.toyName);
+	}
+
+	@Override
+	public String toString() {
+		return String.format("이름 : %s / 가격 : %d / 색상 : %s / 사용가능연령 : %d / 제조년월일 : %s / 재료 : %s", toyName, price, color, age, date, getIngredients());
+	}
+
+	private Object getIngredients() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
