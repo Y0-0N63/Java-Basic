@@ -1,5 +1,6 @@
 package model.dto;
 
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -96,8 +97,7 @@ public class Toy {
 		return String.format("이름 : %s / 가격 : %d / 색상 : %s / 사용가능연령 : %d / 제조년월일 : %s / 재료 : %s", toyName, price, color, age, date, getIngredients());
 	}
 
-	private Object getIngredients() {
-		// TODO Auto-generated method stub
-		return null;
+	private String getIngredients() {
+		return String.join(", ", ingredient);
 	}
 }

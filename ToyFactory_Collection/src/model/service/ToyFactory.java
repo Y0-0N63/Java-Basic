@@ -226,10 +226,19 @@ public class ToyFactory {
 		}
 
 		// 연령별로 출력하기
-		for
-		Set<Integer> keySet = toyMap.keySet();
-		for (Integer key : keySet) {
-			System.out.println(toyMap.get(key));
+		if(toyMap.isEmpty()) {
+			System.out.println("저장된 장난감이 없습니다.");
+		} else{ 
+			// toyMap의 키(연령)를 age 변수에 담아서 반복
+			for(int age : toyMap.keySet()) {
+				System.out.println("[연령 : " + age + "세]");
+				// 해당 age 연결된 객체 list에 저장
+				List<Toy> toys = toyMap.get(age);
+				
+				for(Toy toy : toys) {
+					System.out.println(toy.toString());
+				}
+			}
 		}
 	}
 
