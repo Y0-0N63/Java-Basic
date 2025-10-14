@@ -71,7 +71,7 @@ public class SoloApp {
 				System.out.println(voteInitial());
 				break;
 			case 3:
-				applyDate();
+				System.out.println(applyDate());
 				break;
 			case 4:
 				/* showLike(); */ break;
@@ -171,7 +171,7 @@ public class SoloApp {
 	 * 무제한) - 효과 : from -> to : 호감도 +2 - 다대일 알림 : 같은 날짜에 > 같은 사람 2명 이상이 신청 > "다대일
 	 * 데이트" : 다대일 데이트네요! YYYYMMDD, 대상: OO ← 신청자: A, B, ...
 	 */
-	public void applyDate() {
+	public String applyDate() {
 		System.out.print("내 이름 : ");
 		String myName = sc.next();
 
@@ -180,14 +180,12 @@ public class SoloApp {
 
 		// 자기 자신에게 신청한 경우
 		if (myName.equals(patnerName)) {
-			System.out.println("자기 자신에게는 신청할 수 없습니다.");
-			return;
+			return "자기 자신에게는 신청할 수 없습니다.";
 		}
 
 		// 동성에게 신청한 경우
 		if (getMemberByName(myName).getGender() == getMemberByName(patnerName).getGender()) {
-			System.out.println("데이트 신청은 이성에게만 가능합니다.");
-			return;
+			return "데이트 신청은 이성에게만 가능합니다.";
 		}
 
 		// 날짜 입력
@@ -195,14 +193,20 @@ public class SoloApp {
 		String date = sc.next();
 		// 입력된 날짜가 8자리 미만일 경우
 		if (date.length() < 8) {
-			System.out.println("날짜 형식이 올바르지 않습니다. 예 : 20241013");
-			return;
+			return "날짜 형식이 올바르지 않습니다. 예 : 20241013";
 		}
 		
 		// 정상 입력 > datePlans에 저장
 		datePlans.add(new DatePlan(myName, patnerName, date));
-
+		// 호감도 올려주기 (+2)
+		Map<String, Integer> likeInnerMap = new HashMap<>();
+		likeInnerMap.put(patnerName, (like + 2));
+		likeMap.put(myName, likeInnerMap);
+		
 		// 같은 날짜에 여러 명이 한 명에게 데이트 신청했을 때
+		// 신청자(여러 명) 저장할 배열 생성
+		List<String> applicants = new ArrayList<>();
+		String receiver = "";
 		for(DatePlan p1 : datePlans) {
 			// 같은 날짜가 존재하는지 확인하기
 			boolean sameDate = false;
@@ -225,22 +229,20 @@ public class SoloApp {
 					for(DatePlan p4 : datePlans) {
 						String receiver2 = p4.getReceiver();
 						if(receiver1.equals(receiver2)) {
+							receiver = p4.getReceiver();
+							applicants.add(p4.getApplicant());
 							sameReceiver = true;
 						}
 					}
 					// 같은 날짜에 동일한 수신인이 존재한다면
 					if(sameReceiver) {
-						System.out.println("다대일 데이트네요! YYYYMMDD, 대상: OO ← 신청자: A, B, ... ");
+						return String.format("<데이트 신청 완료 : %s -> %s %s (+2점)>\n다대일 데이트네요! %s, 대상: %s ← 신청자: %s", myName, patnerName, date, date, receiver, applicants);
+					} else {
+						return String.format("<데이트 신청 완료 : %s -> %s %s (+2점)>\\n", myName, patnerName, date);
 					}
 				}
-				
 			}
 		}
-
-		// 호감도 올려주기 (+2)
-		Map<String, Integer> likeInnerMap = new HashMap<>();
-		likeInnerMap.put(patnerName, (like + 2));
-		likeMap.put(myName, likeInnerMap);
-		
+		return "";
 	}
 }
