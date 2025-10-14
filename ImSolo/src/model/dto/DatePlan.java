@@ -43,6 +43,6 @@ public class DatePlan {
 
 	@Override
 	public String toString() {
-		return String.format("<데이트 신청 완료: %s -> %s %s (+2점)", applicant, receiver, date);
+		return String.format("<데이트 신청 완료: %s -> %s %s (+2점)>", applicant, receiver, date);
 	}
 }
